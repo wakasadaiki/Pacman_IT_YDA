@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         myTransform.position = pos;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         moveFlg = false;
     }
