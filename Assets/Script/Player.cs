@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        
         PlayerDerection();
         if(moveFlg == true)
         {
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
 
     public void PlayerDerection()
     {
+
         if (Input.GetKey(KeyCode.W))
         {
             moveFlg = true;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
+            
             moveFlg = true;
             downDerection = true;
             upDerection = rightDerection = leftDerection = false;
@@ -52,28 +55,35 @@ public class Player : MonoBehaviour
     }
 
     private void  PlayerRun(){
+        float key = 0.0f;
+
         Transform myTransform = this.transform;
         Vector3 pos = transform.position;
 
         if (upDerection == true){
+            key = 0.0f;
             pos.y += 0.07f; 
         }
         if (leftDerection == true)
         {
+            key = 90.0f;
             pos.x -= 0.07f;
         }
         if (downDerection == true)
         {
+            key = 180.0f;
             pos.y -= 0.07f;
         }
         if (rightDerection == true)
         {
+            key = 270.0f;
             pos.x += 0.07f;
         }
+        transform.localRotation = Quaternion.Euler(0.0f, 0.0f, key);
         myTransform.position = pos;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         moveFlg = false;
     }
